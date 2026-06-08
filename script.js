@@ -71,6 +71,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1500);
     });
 
+    // Lógica executada automaticamente ao carregar o painel.html
+    const cargoSalvo = localStorage.getItem('cargoUsuario');
+    const areaProfessor = document.getElementById("area-professor");
+    const areaAluno = document.getElementById("area-aluno");
+
+    if (cargoSalvo && (areaProfessor || areaAluno)) {
+        if (cargoSalvo === "professor") {
+            areaProfessor.style.display = "block";
+            areaAluno.style.display = "none";
+        } else if (cargoSalvo === "estudante") {
+            areaProfessor.style.display = "none";
+            areaAluno.style.display = "block";
+        }
+    }
+
 
     // ==========================================================================
     // 3. COMPONENTE 1: RENDERIZAÇÃO DO CARROSSEL VIA ARRAY DE OBJETOS

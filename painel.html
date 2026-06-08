@@ -1,1 +1,46 @@
+<main style="padding: 40px 24px; max-width: 1200px; margin: 0 auto;">
+        
+        <div id="area-professor" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <div>
+                    <h2>Painel do Educador Especialista</h2>
+                    <p>Gerencie suas turmas e crie atividades com adaptação cognitiva.</p>
+                </div>
+                <button class="btn-primary" onclick="alert('Funcionalidade de criar atividade simulada com sucesso!')">
+                    <i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Criar Nova Atividade
+                </button>
+            </div>
 
+            <h3 style="margin-bottom: 16px;">Suas Atividades Recomendadas</h3>
+            <div class="feature-card" style="margin-bottom: 16px;">
+                <h4><i class="fa-solid fa-calculator" style="color: var(--accent-color); margin-right: 8px;"></i> Atividade 1: Frações Visuais com Blocos</h4>
+                <p style="margin-top: 8px; color: var(--text-muted);">Recomendada para o perfil: <strong>Autismo / TEA</strong></p>
+            </div>
+            <div class="feature-card">
+                <h4><i class="fa-solid fa-arrow-down-1-9" style="color: var(--accent-color); margin-right: 8px;"></i> Atividade 2: Contagem Linear Espaçada</h4>
+                <p style="margin-top: 8px; color: var(--text-muted);">Recomendada para o perfil: <strong>Discalculia</strong></p>
+            </div>
+        </div>
+
+        <div id="area-aluno" style="display: none;">
+            <h2 style="margin-bottom: 8px;">Suas Atividades de Hoje</h2>
+            <p style="margin-bottom: 32px; color: var(--text-muted);">Abaixo estão os exercícios preparados pelos seus professores especialmente para você.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-star"></i></div>
+                    <h3>Atividade de Frações</h3>
+                    <p style="margin-bottom: 16px;">Criada pela Profª. Ana Cláudia</p>
+                    <button class="btn-primary-sm" style="width: 100%;">Começar Exercício</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shapes"></i></div>
+                    <h3>Desafio de Geometria</h3>
+                    <p style="margin-bottom: 16px;">Criada pelo Prof. Roberto</p>
+                    <button class="btn-primary-sm" style="width: 100%; background-color: var(--text-muted);">Bloqueada</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
