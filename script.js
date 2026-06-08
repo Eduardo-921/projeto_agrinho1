@@ -10,41 +10,44 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentFontSize = 16;
     const bodyEl = document.body;
 
-    // Botões de Acessibilidade
     const btnContrast = document.getElementById("btn-contrast");
     const btnFontIncrease = document.getElementById("btn-font-increase");
     const btnFontDecrease = document.getElementById("btn-font-decrease");
     const btnReaderMode = document.getElementById("btn-reader-mode");
 
-    // Alternar Alto Contraste
-    btnContrast.addEventListener("click", () => {
-        bodyEl.classList.toggle("high-contrast");
-    });
+    if (btnContrast) {
+        btnContrast.addEventListener("click", () => {
+            bodyEl.classList.toggle("high-contrast");
+        });
+    }
 
-    // Alternar Modo Leitura Limpa
-    btnReaderMode.addEventListener("click", () => {
-        bodyEl.classList.toggle("reader-mode");
-    });
+    if (btnReaderMode) {
+        btnReaderMode.addEventListener("click", () => {
+            bodyEl.classList.toggle("reader-mode");
+        });
+    }
 
-    // Controle de Tamanho de Fonte Limpo (Range 12px a 24px)
-    btnFontIncrease.addEventListener("click", () => {
-        let novaFonte = currentFontSize + 2;
-        if (novaFonte >= 12 && novaFonte <= 24) {
-            currentFontSize = novaFonte;
-            document.documentElement.style.setProperty('--font-base', `${currentFontSize}px`);
-        }
-    });
+    if (btnFontIncrease) {
+        btnFontIncrease.addEventListener("click", () => {
+            let novaFonte = currentFontSize + 2;
+            if (novaFonte >= 12 && novaFonte <= 24) {
+                currentFontSize = novaFonte;
+                document.documentElement.style.setProperty('--font-base', `${currentFontSize}px`);
+            }
+        });
+    }
 
-    btnFontDecrease.addEventListener("click", () => {
-        let novaFonte = currentFontSize - 2;
-        if (novaFonte >= 12 && novaFonte <= 24) {
-            currentFontSize = novaFonte;
-            document.documentElement.style.setProperty('--font-base', `${currentFontSize}px`);
-        }
-    });
+    if (btnFontDecrease) {
+        btnFontDecrease.addEventListener("click", () => {
+            let novaFonte = currentFontSize - 2;
+            if (novaFonte >= 12 && novaFonte <= 24) {
+                currentFontSize = novaFonte;
+                document.documentElement.style.setProperty('--font-base', `${currentFontSize}px`);
+            }
+        });
+    }
 
-
-// ==========================================================================
+    // ==========================================================================
     // 2. CONTROLE DE ACESSO E PERFIS (CADASTRO / LOGIN) - CORRIGIDO
     // ==========================================================================
     const signupForm = document.getElementById("dynamic-signup-form");
@@ -52,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectRole = document.getElementById("user-role"); 
     const feedbackMessage = document.getElementById("demo-feedback-message");
 
-    // SÓ EXECUTA SE ESTIVER NA INDEX.HTML (Onde o formulário existe)
     if (signupForm) {
         signupForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -74,20 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // SÓ EXECUTA SE ESTIVER NO PAINEL.HTML (Onde as áreas de conteúdo existem)
+    // LÓGICA DE EXIBIÇÃO DO PAINEL (PROFESSOR / ALUNO)
     const areaProfessor = document.getElementById("area-professor");
     const areaAluno = document.getElementById("area-aluno");
 
     if (areaProfessor || areaAluno) {
         const cargoSalvo = localStorage.getItem('cargoUsuario');
 
-        // Se por algum motivo o localStorage estiver vazio, define um padrão para não ficar em branco
-        if (!cargoSalvo) {
-            if (areaAluno) areaAluno.style.display = "block";
-        } else if (cargoSalvo === "professor") {
-            if (areaProfessor) areaProfessor.style.style.display = "block";
+        // Removemos o bug do "style.style" e blindamos a checagem
+        if (cargoSalvo === "professor") {
+            if (areaProfessor) areaProfessor.style.display = "block";
             if (areaAluno) areaAluno.style.display = "none";
-        } else if (cargoSalvo === "estudante") {
+        } else {
+            // Se for estudante ou se o localStorage estiver vazio por segurança, mostra o aluno
             if (areaProfessor) areaProfessor.style.display = "none";
             if (areaAluno) areaAluno.style.display = "block";
         }
@@ -117,51 +118,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const carouselContainer = document.getElementById("dynamic-carousel");
 
-    // Injetar dados no HTML do Carrossel
-    carrosselDados.forEach(item => {
-        const itemHtml = `
-            <div class="carousel-item">
-                <div class="carousel-card">
-                    <div class="carousel-item-content">
-                        <h3>${item.titulo}</h3>
-                        <p>${item.descricao}</p>
-                    </div>
-                    <div class="carousel-example-box">
-                        <strong>Exemplo Prático na Plataforma:</strong>
-                        <p>${item.exemplo}</p>
+    if (carouselContainer) {
+        carrosselDados.forEach(item => {
+            const itemHtml = `
+                <div class="carousel-item">
+                    <div class="carousel-card">
+                        <div class="carousel-item-content">
+                            <h3>${item.titulo}</h3>
+                            <p>${item.descricao}</p>
+                        </div>
+                        <div class="carousel-example-box">
+                            <strong>Exemplo Prático na Plataforma:</strong>
+                            <p>${item.exemplo}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        carouselContainer.innerHTML += itemHtml;
-    });
+            `;
+            carouselContainer.innerHTML += itemHtml;
+        });
 
-    // Lógica de Movimentação do Carrossel
-    let currentIndex = 0;
-    const nextBtn = document.getElementById("carousel-next");
-    const prevBtn = document.getElementById("carousel-prev");
+        let currentIndex = 0;
+        const nextBtn = document.getElementById("carousel-next");
+        const prevBtn = document.getElementById("carousel-prev");
 
-    function updateCarouselPosition() {
-        carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        function updateCarouselPosition() {
+            carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener("click", () => {
+                if (currentIndex < carrosselDados.length - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarouselPosition();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = carrosselDados.length - 1;
+                }
+                updateCarouselPosition();
+            });
+        }
     }
-
-    nextBtn.addEventListener("click", () => {
-        if (currentIndex < carrosselDados.length - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0; // Volta ao início
-        }
-        updateCarouselPosition();
-    });
-
-    prevBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = carrosselDados.length - 1; // Vai ao final
-        }
-        updateCarouselPosition();
-    });
 
 
     // ==========================================================================
@@ -184,45 +187,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const accordionContainer = document.getElementById("dynamic-accordion");
 
-    // Injetar dados no FAQ
-    faqDados.forEach((item, index) => {
-        const faqHtml = `
-            <div class="faq-item">
-                <button class="faq-trigger" data-index="${index}" aria-expanded="false">
-                    <span>${item.pergunta}</span>
-                    <i class="fa-solid fa-chevron-down faq-icon-state"></i>
-                </button>
-                <div class="faq-content">
-                    <div class="faq-content-inner">
-                        <p>${item.resposta}</p>
+    if (accordionContainer) {
+        faqDados.forEach((item, index) => {
+            const faqHtml = `
+                <div class="faq-item">
+                    <button class="faq-trigger" data-index="${index}" aria-expanded="false">
+                        <span>${item.pergunta}</span>
+                        <i class="fa-solid fa-chevron-down faq-icon-state"></i>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-content-inner">
+                            <p>${item.resposta}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        accordionContainer.innerHTML += faqHtml;
-    });
-
-    // Lógica de Ativação do Acordeão
-    const triggers = document.querySelectorAll(".faq-trigger");
-
-    triggers.forEach(trigger => {
-        trigger.addEventListener("click", function() {
-            const parent = this.parentElement;
-            const content = this.nextElementSibling;
-            const isOpen = parent.classList.contains("active");
-
-            // Fecha todos os outros abertos antes
-            document.querySelectorAll(".faq-item").forEach(item => {
-                item.classList.remove("active");
-                item.querySelector(".faq-content").style.maxHeight = null;
-                item.querySelector(".faq-trigger").setAttribute("aria-expanded", "false");
-            });
-
-            if (!isOpen) {
-                parent.classList.add("active");
-                content.style.maxHeight = content.scrollHeight + "px";
-                this.setAttribute("aria-expanded", "true");
-            }
+            `;
+            accordionContainer.innerHTML += faqHtml;
         });
-    });
+
+        const triggers = document.querySelectorAll(".faq-trigger");
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener("click", function() {
+                const parent = this.parentElement;
+                const content = this.nextElementSibling;
+                const isOpen = parent.classList.contains("active");
+
+                document.querySelectorAll(".faq-item").forEach(item => {
+                    item.classList.remove("active");
+                    item.querySelector(".faq-content").style.maxHeight = null;
+                    item.querySelector(".faq-trigger").setAttribute("aria-expanded", "false");
+                });
+
+                if (!isOpen) {
+                    parent.classList.add("active");
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    this.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+    }
 });

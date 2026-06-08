@@ -1,4 +1,36 @@
-<main style="padding: 40px 24px; max-width: 1200px; margin: 0 auto;">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel | SEE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+        <div class="accessibility-container">
+            <button id="btn-contrast" class="acc-btn"><i class="fa-solid fa-circle-half-stroke"></i> Contraste</button>
+            <button id="btn-font-decrease" class="acc-btn"><i class="fa-solid fa-minus"></i> A-</button>
+            <button id="btn-font-increase" class="acc-btn"><i class="fa-solid fa-plus"></i> A+</button>
+            <button id="btn-reader-mode" class="acc-btn"><i class="fa-solid fa-book-open"></i> Modo Leitura</button>
+        </div>
+    </nav>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="logo"><i class="fa-solid fa-brain"></i> <span>SEE</span></a>
+            <nav class="main-nav">
+                <a href="index.html" class="btn-primary-sm" style="background-color: #ef4444;">Sair</a>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding: 40px 24px; max-width: 1200px; margin: 0 auto;">
         
         <div id="area-professor" style="display: none;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
@@ -33,14 +65,11 @@
                     <p style="margin-bottom: 16px;">Criada pela Profª. Ana Cláudia</p>
                     <button class="btn-primary-sm" style="width: 100%;">Começar Exercício</button>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-shapes"></i></div>
-                    <h3>Desafio de Geometria</h3>
-                    <p style="margin-bottom: 16px;">Criada pelo Prof. Roberto</p>
-                    <button class="btn-primary-sm" style="width: 100%; background-color: var(--text-muted);">Bloqueada</button>
-                </div>
             </div>
         </div>
 
     </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
