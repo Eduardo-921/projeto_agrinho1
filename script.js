@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // 2. SIMULADOR EM TEMPO REAL DE PERFIS NEURODIVERGENTES (CADASTRO)
     // ==========================================================================
+// ==========================================================================
+    // 2. SIMULADOR EM TEMPO REAL DE PERFIS NEURODIVERGENTES (CADASTRO)
+    // ==========================================================================
     const signupForm = document.getElementById("dynamic-signup-form");
     const selectProfile = document.getElementById("neuro-profile");
     const feedbackMessage = document.getElementById("demo-feedback-message");
@@ -54,16 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
     signupForm.addEventListener("submit", (e) => {
         e.preventDefault();
         
-        // Remove todos os perfis anteriores aplicados ao body
-        bodyEl.classList.remove("profile-padrao", "profile-tdah", "profile-tea", "profile-discalculia", "profile-dislexia");
-        
-        // Adiciona a classe correspondente ao perfil selecionado
+        // Opcional: Salva o perfil escolhido para lembrar dele depois
         const selectedValue = selectProfile.value;
-        bodyEl.classList.add(`profile-${selectedValue}`);
+        localStorage.setItem('perfilNeuro', selectedValue);
         
-        // Feedback visual imediato
+        // Feedback visual imediato antes de mudar de página
         feedbackMessage.style.display = "flex";
         feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Aguarda 1,5 segundos (1500 milissegundos) para o usuário ver o feedback e muda de página
+        setTimeout(() => {
+            window.location.href = "painel.html";
+        }, 1500);
     });
 
 
