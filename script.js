@@ -44,45 +44,52 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // ==========================================================================
-    // 2. SIMULADOR EM TEMPO REAL DE PERFIS NEURODIVERGENTES (CADASTRO)
-    // ==========================================================================
 // ==========================================================================
-    // 2. SIMULADOR EM TEMPO REAL DE PERFIS NEURODIVERGENTES (CADASTRO)
+    // 2. CONTROLE DE ACESSO E PERFIS (CADASTRO / LOGIN) - CORRIGIDO
     // ==========================================================================
     const signupForm = document.getElementById("dynamic-signup-form");
     const selectProfile = document.getElementById("neuro-profile");
+    const selectRole = document.getElementById("user-role"); 
     const feedbackMessage = document.getElementById("demo-feedback-message");
 
-    signupForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        // Opcional: Salva o perfil escolhido para lembrar dele depois
-        const selectedValue = selectProfile.value;
-        localStorage.setItem('perfilNeuro', selectedValue);
-        
-        // Feedback visual imediato antes de mudar de página
-        feedbackMessage.style.display = "flex";
-        feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // SÓ EXECUTA SE ESTIVER NA INDEX.HTML (Onde o formulário existe)
+    if (signupForm) {
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const selectedProfile = selectProfile.value;
+            const selectedRole = selectRole.value;
+            
+            localStorage.setItem('perfilNeuro', selectedProfile);
+            localStorage.setItem('cargoUsuario', selectedRole);
+            
+            if (feedbackMessage) {
+                feedbackMessage.style.display = "flex";
+                feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
 
-        // Aguarda 1,5 segundos (1500 milissegundos) para o usuário ver o feedback e muda de página
-        setTimeout(() => {
-            window.location.href = "painel.html";
-        }, 1500);
-    });
+            setTimeout(() => {
+                window.location.href = "painel.html";
+            }, 1500);
+        });
+    }
 
-    // Lógica executada automaticamente ao carregar o painel.html
-    const cargoSalvo = localStorage.getItem('cargoUsuario');
+    // SÓ EXECUTA SE ESTIVER NO PAINEL.HTML (Onde as áreas de conteúdo existem)
     const areaProfessor = document.getElementById("area-professor");
     const areaAluno = document.getElementById("area-aluno");
 
-    if (cargoSalvo && (areaProfessor || areaAluno)) {
-        if (cargoSalvo === "professor") {
-            areaProfessor.style.display = "block";
-            areaAluno.style.display = "none";
+    if (areaProfessor || areaAluno) {
+        const cargoSalvo = localStorage.getItem('cargoUsuario');
+
+        // Se por algum motivo o localStorage estiver vazio, define um padrão para não ficar em branco
+        if (!cargoSalvo) {
+            if (areaAluno) areaAluno.style.display = "block";
+        } else if (cargoSalvo === "professor") {
+            if (areaProfessor) areaProfessor.style.style.display = "block";
+            if (areaAluno) areaAluno.style.display = "none";
         } else if (cargoSalvo === "estudante") {
-            areaProfessor.style.display = "none";
-            areaAluno.style.display = "block";
+            if (areaProfessor) areaProfessor.style.display = "none";
+            if (areaAluno) areaAluno.style.display = "block";
         }
     }
 
