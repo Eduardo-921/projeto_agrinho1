@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEE</title> | Sistema Educacional Especializado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="accessibility-bar" aria-label="Ferramentas de Acessibilidade">
+        <div class="accessibility-container">
+            <button id="btn-contrast" class="acc-btn" title="Alternar Alto Contraste" aria-label="Alternar Alto Contraste">
+                <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Contraste
+            </button>
+            <button id="btn-font-decrease" class="acc-btn" title="Diminuir Fonte" aria-label="Diminuir Fonte">
+                <i class="fa-solid fa-minus" aria-hidden="true"></i> A-
+            </button>
+            <button id="btn-font-increase" class="acc-btn" title="Aumentar Fonte" aria-label="Aumentar Fonte">
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> A+
+            </button>
+            <button id="btn-reader-mode" class="acc-btn" title="Alternar Modo de Leitura Limpa" aria-label="Alternar Modo de Leitura Limpa">
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i> Modo Leitura
+            </button>
+        </div>
+    </nav>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo" aria-label="Includo Math Home">
+                <i class="fa-solid fa-brain" aria-hidden="true"></i> <span>SEE</span>
+            </a>
+            <nav class="main-nav" aria-label="Navegação Principal">
+                <a href="#funcionalidades">Funcionalidades</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#faq">Perguntas Frequentes</a>
+                <a href="#auth-section" class="btn-primary-sm">Acessar Plataforma</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="badge">Sistema Educacional Especializado</span>
+                    <h1>A matemática explicada do jeito que o seu cérebro aprende.</h1>
+                    <p>Uma plataforma adaptativa projetada para estudantes neurodivergentes, público-alvo da educação especial e todos que buscam um aprendizado sem barreiras, simples e direto.</p>
+                    <div class="hero-actions">
+                        <a href="#auth-section" class="btn-primary">Criar Minha Conta Adaptativa</a>
+                        <a href="#funcionalidades" class="btn-secondary">Conhecer Recursos</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="interactive-preview">
+                        <div class="preview-header">
+                            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            <span class="preview-title">Painel do Aluno adaptado</span>
+                        </div>
+                        <div class="preview-body">
+                            <div class="preview-card">
+                                <i class="fa-solid fa-calculator-simple icon-math"></i>
+                                <h3>Atividade de Hoje: Frações Visuais</h3>
+                                <p>Recomendada pela Profª. Ana Cláudia</p>
+                                <div class="progress-bar-mock"><div class="progress-fill"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auth-section" class="auth-section">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h2>Experimente a Adaptação em Tempo Real</h2>
+                    <p class="auth-subtitle">Crie seu perfil simulado abaixo e veja a mágica do layout limpo se ajustando imediatamente às suas necessidades de aprendizagem.</p>
+                    
+                    <form id="dynamic-signup-form" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <label for="user-name">Nome do Estudante / Professor</label>
+                            <input type="text" id="user-name" placeholder="Ex: Lucas Silva" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user-role">Eu sou:</label>
+                            <select id="user-role" required>
+                                <option value="estudante">Estudante</option>
+                                <option value="professor">Professor / Educador Especialista</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="neuro-group">
+                            <label for="neuro-profile">Selecione o perfil de adaptação cognitiva principal:</label>
+                            <select id="neuro-profile">
+                                <option value="padrao">Nenhuma/Perfil Geral (Layout Limpo Padrão)</option>
+                                <option value="tdah">TDAH (Alta Legibilidade, Menos Elementos Visuais, Foco Direto)</option>
+                                <option value="tea">Autismo / TEA (Cores Suaves, Sem Distrações, Previsibilidade Alta)</option>
+                                <option value="discalculia">Discalculia (Suporte Visual de Números, Fontes Espaçadas)</option>
+                                <option value="dislexia">Dislexia (Fonte Opendyslexic Adaptada, Alto Contraste de Linhas)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Entrar e Adaptar Plataforma</button>
+                    </form>
+
+                    <div id="demo-feedback-message" class="demo-feedback" style="display: none;">
+                        <i class="fa-solid fa-circle-check"></i> Perfil aplicado! Note como o espaçamento, fontes e cores se adequaram ao perfil selecionado para facilitar a fixação da matemática.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="funcionalidades" class="features-section">
+            <div class="section-header">
+                <h2>Construído para Eliminar Barreiras Cognitivas</h2>
+                <p>Nossa interface simplificada de matemática foi pensada do absoluto zero para a Educação Especial.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h3>Recomendação Direta</h3>
+                    <p>Professores criam, personalizam e recomendam tarefas de matemática com enunciados curtos e objetivos claros.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Painel de Ajuste Fino</h3>
+                    <p>Controle total do ambiente visual: aumente fontes, alterne para fontes amigáveis à dislexia e remova distrações com um clique.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Navegação Linear Simples</h3>
+                    <p>Sem menus complexos, subníveis ocultos ou excesso de informações. O aluno foca estritamente no exercício matemático do momento.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <div class="section-header">
+                <h2>Matemática Descomplicada na Prática</h2>
+                <p>Veja como adaptamos os conteúdos básicos e avançados da matemática para o público da educação inclusiva.</p>
+            </div>
+            <div class="carousel-wrapper">
+                <div class="carousel-container" id="dynamic-carousel">
+                    </div>
+                <div class="carousel-controls">
+                    <button id="carousel-prev" class="carousel-arrow" aria-label="Slide anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button id="carousel-next" class="carousel-arrow" aria-label="Próximo slide"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="section-header">
+                <h2>Dúvidas Frequentes</h2>
+                <p>Entenda como a SEE apoia redes de ensino, professores e famílias de alunos da educação especial.</p>
+            </div>
+            <div class="faq-container" id="dynamic-accordion">
+                </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo-footer"><i class="fa-solid fa-brain"></i> SEE</a>
+                <p>&copy; 2026 SEE. Tecnologia de Impacto Social para a Educação Especial e Inclusiva de Alunos Neurodivergentes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
