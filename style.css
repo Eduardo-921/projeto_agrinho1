@@ -668,3 +668,64 @@ body.high-contrast a, body.high-contrast button {
     text-decoration: underline !important;
     font-weight: bold !important;
 }
+
+/* ==========================================================================
+   10. ADAPTAÇÕES DE ACESSIBILIDADE POR PERFIL NEURODIVERGENTE
+   ========================================================================== */
+
+/* --- 1. ADAPTAÇÃO PARA TDAH (Foco Extremo, Menos Distrações) --- */
+body.profile-tdah {
+    --bg-primary: #f1f5f9; /* Fundo ligeiramente mais neutro */
+}
+/* Esconde elementos secundários ou ilustrações excessivas para evitar perda de foco */
+body.profile-tdah .carousel-controls,
+body.profile-tdah .faq-section {
+    opacity: 0.9;
+}
+/* Destaca intensamente os cards de atividades principais */
+body.profile-tdah .feature-card {
+    border: 2px solid var(--accent-color) !important;
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.1);
+}
+
+/* --- 2. ADAPTAÇÃO PARA AUTISMO / TEA (Cores Suaves e Padrões Previsíveis) --- */
+body.profile-tea {
+    --accent-color: #5c6bc0; /* Azul/Violeta mais suave e menos estimulante */
+    --accent-hover: #3f51b5;
+    font-family: 'Poppins', sans-serif;
+}
+/* Evita cantos muito agudos e usa tons pastéis para conforto sensorial */
+body.profile-tea .feature-card, 
+body.profile-tea .btn-primary {
+    border-radius: 24px; /* Formas ainda mais arredondadas e amigáveis */
+    background-color: #fafafa;
+}
+
+/* --- 3. ADAPTAÇÃO PARA DISLEXIA (Tipografia Otimizada para Leitura) --- */
+body.profile-dislexia {
+    /* Aumenta o espaçamento de linhas e letras para evitar a sensação de "letras embaralhadas" */
+    letter-spacing: 0.05em;
+    word-spacing: 0.1em;
+}
+body.profile-dislexia p, 
+body.profile-dislexia span, 
+body.profile-dislexia h3 {
+    line-height: 1.8 !important; /* Texto muito mais espaçado */
+}
+/* Aplica um fundo levemente amarelado/creme que reduz o contraste ofuscante do branco puro */
+body.profile-dislexia, 
+body.profile-dislexia .feature-card {
+    background-color: #fdfbf7 !important;
+    color: #1a202c;
+}
+
+/* --- 4. ADAPTAÇÃO PARA DISCALCULIA (Suporte Visual Avançado) --- */
+body.profile-discalculia {
+    --accent-color: #10b981; /* Verde focado em progresso positivo */
+}
+/* Destaca números ou ícones matemáticos com caixas de fundo para isolamento visual */
+body.profile-discalculia .feature-icon {
+    background-color: #ecfdf5;
+    color: #10b981;
+    transform: scale(1.1);
+}

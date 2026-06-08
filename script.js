@@ -48,13 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================================================
-    // 2. CONTROLE DE ACESSO E PERFIS (CADASTRO / LOGIN) - CORRIGIDO
+    // 2. CONTROLE DE ACESSO E ADAPTAÇÃO POR NEURODIVERGÊNCIA
     // ==========================================================================
     const signupForm = document.getElementById("dynamic-signup-form");
     const selectProfile = document.getElementById("neuro-profile");
     const selectRole = document.getElementById("user-role"); 
     const feedbackMessage = document.getElementById("demo-feedback-message");
+    const bodyEl = document.body;
 
+    // Ação ao enviar o formulário na index.html
     if (signupForm) {
         signupForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -62,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const selectedProfile = selectProfile.value;
             const selectedRole = selectRole.value;
             
+            // Salva as escolhas do usuário
             localStorage.setItem('perfilNeuro', selectedProfile);
             localStorage.setItem('cargoUsuario', selectedRole);
             
@@ -70,10 +73,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedbackMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
+            // Redireciona para o painel adaptado
             setTimeout(() => {
                 window.location.href = "painel.html";
             }, 1500);
         });
+    }
+
+    // APLICAÇÃO AUTOMÁTICA DA ADAPTAÇÃO COGNITIVA (Executa em todas as páginas)
+    const perfilSalvo = localStorage.getItem('perfilNeuro');
+    
+    if (perfilSalvo) {
+        // Limpa classes antigas de perfil para não acumular
+        bodyEl.classList.remove('profile-tea', 'profile-tdah', 'profile-discalculia', 'profile-dislexia');
+        
+        // Adiciona a classe do perfil atual (ex: profile-tdah)
+        bodyEl.classList.add(`profile-${perfilSalvo}`);
+        
+        // Opcional: Atualiza o select da index para mostrar o que já estava salvo
+        if (selectProfile) {
+            selectProfile.value = perfilSalvo;
+        }
     }
 
     // LÓGICA DE EXIBIÇÃO DO PAINEL (PROFESSOR / ALUNO)
@@ -83,18 +103,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (areaProfessor || areaAluno) {
         const cargoSalvo = localStorage.getItem('cargoUsuario');
 
-        // Removemos o bug do "style.style" e blindamos a checagem
         if (cargoSalvo === "professor") {
             if (areaProfessor) areaProfessor.style.display = "block";
             if (areaAluno) areaAluno.style.display = "none";
         } else {
-            // Se for estudante ou se o localStorage estiver vazio por segurança, mostra o aluno
             if (areaProfessor) areaProfessor.style.display = "none";
             if (areaAluno) areaAluno.style.display = "block";
         }
     }
-
-
+    
     // ==========================================================================
     // 3. COMPONENTE 1: RENDERIZAÇÃO DO CARROSSEL VIA ARRAY DE OBJETOS
     // ==========================================================================
